@@ -21,21 +21,21 @@ import java.time.ZonedDateTime;
 @Controller
 public class MainController {
 
-//    Odwołanie do naszego SimpleBeana (wstrzyknięcie):
+    //    Odwołanie do naszego SimpleBeana (wstrzyknięcie):
     @Autowired
     SimpleBean simpleBean;
 //      -----------------------------------------
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String main(Model model){
+    public String main(Model model) {
 
         ZonedDateTime now = LocalDateTime.now().atZone(ZoneId.of("Europe/Paris"));
 
         System.out.println("Time now: " + now.toString());
 
-        if(now.getHour()>= 16){
+        if (now.getHour() >= 16) {
             model.addAttribute("someString", "a");
-        }else {
+        } else {
             model.addAttribute("someString", "b");
         }
 
@@ -43,12 +43,21 @@ public class MainController {
 //        model.addAttribute("someString", "Pochodzę z controllera!");
         return "index";
     }
-//      Pobieranie danych z formularza:
+
+    //      Pobieranie danych z formularza:
+//          (for firstIndex.html)
+//    @RequestMapping(value = "/data", method = RequestMethod.POST)
+//    @ResponseBody
+//    public String data(@RequestParam(value = "name") String name,
+//                       @RequestParam(value = "lastname") String lastname,
+//                       @RequestParam(value = "age", required = false) int age){
+//        return name + " " + lastname + " jest " + ((age>18) ? "pelnoletni" : "niepelnoletni");
+//    }
+//    --------------------------------------------------------------
     @RequestMapping(value = "/data", method = RequestMethod.POST)
     @ResponseBody
-    public String data(@RequestParam(value = "name") String name,
-                       @RequestParam(value = "lastname") String lastname,
-                       @RequestParam(value = "age", required = false) int age){
-        return name + " " + lastname + " jest " + ((age>18) ? "pelnoletni" : "niepelnoletni");
+    public String data(@RequestParam(value = "email") String email,
+                       @RequestParam(value = "password") String password){
+        return "Logowanie testowe: " + "Email: " + email + " Password: " + password;
     }
 }

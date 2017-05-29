@@ -1,22 +1,119 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="pl" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>AkademiaKodu</title>
+    <title>Przepisy.pl</title>
+    <meta name="author" content="Lukasz Kolacz">
+    <meta name="description" content="Strona na potrzeby webinaru, dot. html5 i css3">
+    <meta name="keywords" content="Bootcamp Java, HTML5, CSS3, bootstrap">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{css/main.css}">
 </head>
 <body>
-    <center>
-        <h1>Witaj świecie, jestem templatką!</h1>
-        <p th:text="${someString == 'a'} ? 'Jest po 16 :)' : 'jest przed 16 :(' "></p>
-    </center>
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="container">
+                <div class="row">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                                data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#">Przepisy.pl</a>
+                    </div>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li class="active"><a href="#">Start<span class="sr-only">(current)</span></a></li>
+                            <li><a href="#">Skladniki</a></li>
+                            <li><a href="#">Przepisy</a></li>
+                        </ul>
+                    </div><!-- /.navbar-collapse -->
+                </div>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="container">
+    <div class="row">
+        <img class="img-responsive" th:src="@{img/fasolka.jpg}" alt="czerwona fasola">
+    </div>
+    <div class="row text-center ingredient">
+        <div class="col-md-4">
+            <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+            <p>Fasolka</p></div>
+        <div class="col-md-4">
+            <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+            <p>Garnek</p></div>
+        <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>
+        <div class="col-md-4">
+            <p>Woda</p>
+        </div>
+    </div>
+    <div class="row recipe">
+        <div class="col-md-6">
+            <h3>1. Lorem ipsum dolor sit amet</h3>
+            <p>Consectetur adipiscing elit. Nulla rhoncus, elit eget scelerisque pharetra, arcu nisl euismod turpis, non
+                fringilla massa arcu id lacus. Fusce eu sollicitudin justo, nec consequat sem. Orci varius natoque
+                penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam aliquet felis nec scelerisque
+                vehicula. Fusce efficitur dui maximus nunc ultrices posuere. Morbi at eros lorem. Nunc blandit vitae leo
+                et dapibus.</p>
+            <h3>2. Lorem ipsum dolor sit amet</h3>
+            <p>Consectetur adipiscing elit. Nulla rhoncus, elit eget scelerisque pharetra, arcu nisl euismod turpis, non
+                fringilla massa arcu id lacus. Fusce eu sollicitudin justo, nec consequat sem. Orci varius natoque
+                penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam aliquet felis nec scelerisque
+                vehicula. Fusce efficitur dui maximus nunc ultrices posuere. Morbi at eros lorem. Nunc blandit vitae leo
+                et dapibus.</p>
+            <h3>3. Lorem ipsum dolor sit amet</h3>
+            <p>Consectetur adipiscing elit. Nulla rhoncus, elit eget scelerisque pharetra, arcu nisl euismod turpis, non
+                fringilla massa arcu id lacus. Fusce eu sollicitudin justo, nec consequat sem. Orci varius natoque
+                penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam aliquet felis nec scelerisque
+                vehicula. Fusce efficitur dui maximus nunc ultrices posuere. Morbi at eros lorem. Nunc blandit vitae leo
+                et dapibus.</p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img class="img-circle" src="http://bartsimpsonpictures.squarelogic.net/bart-simpson-11.gif" alt="bart">
+            <p>Bart</p>
+            <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+                     style="width:70%"> 70%
+                </div>
+            </div>
+            <form action="#" th:action="@{/data}" method="post">
+                <div class="form-group">
+                    <label for="usr">Email:</label>
+                    
+                    <!--TODO: zmienic nazwe i podpiac-->
+                    
+                    <input type="text" class="form-control" id="usr" th:name="email">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Password:</label>
 
-    <form action="#" th:action="@{/data}" method="post">
-        <p>Imię: <input type="text" th:name="name"/>
-        <p>Nazwisko: <input type="text" th:name="lastname"/>
-        <p>Wiek: <input type="text" th:name="age"/>
+                    <!--TODO: zmienic nazwe i podpiac-->
+                    
+                    <input type="password" class="form-control" id="pwd" th:name="password">
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="form-control" th:value="Submit">
+                </div>
+            </form>
+        </div>
+    </div>
+    <footer class="row text-center">
+        <p>&copy; 2017 Lukasz Kolacz | akademiakodu.pl</p>
+    </footer>
+</div>
 
-        <p><input type="submit" th:value="Wyślij"/>
-    </form>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
