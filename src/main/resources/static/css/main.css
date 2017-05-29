@@ -1,0 +1,48 @@
+.navbar {
+    margin-bottom: 0;
+}
+
+.ingredient {
+    padding: 50px 0;
+    background-color: limegreen;
+    color: white;
+}
+
+.ingredient span {
+    font-size: 50px;
+    padding-bottom: 20px;
+}
+
+.ingredient p {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.recipe {
+    background-color: green;
+    padding: 30px 10px;
+}
+
+.recipe h3, .recipe p {
+    color: white;
+}
+
+.recipe img {
+    width: 250px;
+}
+
+label {
+    color: white;
+}
+
+input[type="submit"] {
+    width: 100px;
+}
+
+footer {
+    background-color: yellow;
+}
+
+footer p {
+    padding: 20px 10px;
+}
