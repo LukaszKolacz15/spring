@@ -1,5 +1,6 @@
 package com.akademiakodu.spring.controllers;
 
+import com.akademiakodu.spring.models.Person;
 import com.akademiakodu.spring.models.SimpleBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,7 +58,43 @@ public class MainController {
     @RequestMapping(value = "/data", method = RequestMethod.POST)
     @ResponseBody
     public String data(@RequestParam(value = "email") String email,
-                       @RequestParam(value = "password") String password){
+                       @RequestParam(value = "password") String password) {
+
+
         return "Logowanie testowe: " + "Email: " + email + " Password: " + password;
     }
+
+//    INNE PODEJSCIE DO (dużych) FORMULARZY:
+
+    @RequestMapping(value = "/newform", method = RequestMethod.GET)
+    public String newform(Model model) {
+        model.addAttribute("personObject", new Person());
+        return "form";
+    }
+
+    @RequestMapping(value = "/newform", method = RequestMethod.POST)
+    @ResponseBody
+    public String newFormPost(Person person){
+
+    return "Przyszla klasa: " + person.getName() +" " + person.getLastname() + " " + person.getEmail();
+    }
+
+//    ---------------------------------------------------------------------------------------------------------
+
+
+
+
+
+
+//    Testujemy jak dziala wzorzec builder
+//    nie ma wplywu na dzialanie springa
+//    private void testBuilder() {
+//        Person person = new Person.Builder("Oskar")
+//                .lastname("Polak")
+//                .age(27)
+//                .number("787-234-123")
+//                .email("costam@gmail.com")
+//                .build();
+//        person.getAge();
+//    }
 }
