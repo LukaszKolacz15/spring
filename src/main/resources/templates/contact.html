@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+</head>
+<body>
+<center>
+    <form action="#" th:action="@{contact}" th:object="${contactObject}" method="post">
+        <p>Imię: <input type="text" th:field="*{conName}"></p>
+            <span th:if="${#fields.hasErrors('conName')}" th:errors="*{conName}">Name error ex.</span>
+
+        <p>Nazwisko: <input type="text" th:field="*{conLastname}"></p>
+            <span th:if="${#fields.hasErrors('conLastname')}" th:errors="*{conLastname}">LastName error ex.</span>
+
+        <p>Email: <input type="text" th:field="*{conEmail}"></p>
+            <span th:if="${#fields.hasErrors('conEmail')}" th:errors="*{conEmail}">Email error ex.</span>
+
+        <p>Treść zgloszenia: <textarea rows="4" cols="50" th:field="*{conTextarea}"></textarea></p>
+            <span th:if="${#fields.hasErrors('conTextarea')}" th:errors="*{conTextarea}">TextArea error ex.</span>
+
+        <p><input type="submit" th:value="Wyślij"/>
+    </form>
+</center>
+</body>
+</html>

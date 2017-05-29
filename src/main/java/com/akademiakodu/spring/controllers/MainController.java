@@ -1,15 +1,15 @@
 package com.akademiakodu.spring.controllers;
 
+import com.akademiakodu.spring.models.ContactPerson;
 import com.akademiakodu.spring.models.Person;
 import com.akademiakodu.spring.models.SimpleBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -74,17 +74,34 @@ public class MainController {
 
     @RequestMapping(value = "/newform", method = RequestMethod.POST)
     @ResponseBody
-    public String newFormPost(Person person){
+    public String newFormPost(Person person) {
 
-    return "Przyszla klasa: " + person.getName() +" " + person.getLastname() + " " + person.getEmail();
+        return "Przyszla klasa: " + person.getName() + " " + person.getLastname() + " " + person.getEmail();
     }
 
 //    ---------------------------------------------------------------------------------------------------------
 
 
+    @RequestMapping(value = "/contact", method = RequestMethod.GET)
+    public String contact(Model model) {
+        model.addAttribute("contactObject", new ContactPerson());
+        return "contact";
+    }
 
+//    @RequestMapping(value = "/contact", method = RequestMethod.POST)
+//    @ResponseBody
+//    public String newContactPost(ContactPerson contactPerson){
+////        return "Przyszla klasa: " + contactPerson.getConEmail() + " Treść zgłoszenia: " + contactPerson.getConTextarea();
+//
+//    }
 
-
+    @RequestMapping(value = "/contact", method = RequestMethod.POST)
+    public String newContactPost(@ModelAttribute("contactObject") @Valid ContactPerson contactPerson, BindingResult result){
+        if(result.hasErrors()){
+            return "contact";
+        }
+        return "result";
+    }
 
 //    Testujemy jak dziala wzorzec builder
 //    nie ma wplywu na dzialanie springa

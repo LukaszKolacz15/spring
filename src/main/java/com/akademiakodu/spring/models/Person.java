@@ -1,18 +1,38 @@
 package com.akademiakodu.spring.models;
 
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Range;
+
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 /**
  * Created by Lukasz Kolacz on 29.05.2017.
  */
 public class Person {
-
+    @NotEmpty
+    @Size(min = 5, max = 25)
     private String name;
+
+    @NotEmpty
+    @Size(min = 5, max = 25)
     private String lastname;
+
+    @Range(min=18, max=150)
     private int age;
+
+    @Pattern(regexp = "[0-9]{3}-[0-9]{3}-[0-9]{3}")
     private String number;
+
+    @NotEmpty
+    @Email
     private String email;
 
-    public Person() {}
+    public Person() {
+    }
 
 
     private Person(Builder builder) {
@@ -63,14 +83,14 @@ public class Person {
         this.email = email;
     }
 
-    public static class Builder{
+    public static class Builder {
         private String name;
         private String lastname;
         private int age;
         private String number;
         private String email;
 
-        public Builder(String name){
+        public Builder(String name) {
             this.name = name;
         }
 
