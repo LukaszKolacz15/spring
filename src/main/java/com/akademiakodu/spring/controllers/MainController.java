@@ -1,7 +1,7 @@
 package com.akademiakodu.spring.controllers;
 
 import com.akademiakodu.spring.models.ContactPerson;
-import com.akademiakodu.spring.models.Person;
+import com.akademiakodu.spring.models.forms.PersonForm;
 import com.akademiakodu.spring.models.SimpleBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -68,15 +68,15 @@ public class MainController {
 
     @RequestMapping(value = "/newform", method = RequestMethod.GET)
     public String newform(Model model) {
-        model.addAttribute("personObject", new Person());
+        model.addAttribute("personObject", new PersonForm());
         return "form";
     }
 
     @RequestMapping(value = "/newform", method = RequestMethod.POST)
     @ResponseBody
-    public String newFormPost(Person person) {
+    public String newFormPost(PersonForm personForm) {
 
-        return "Przyszla klasa: " + person.getName() + " " + person.getLastname() + " " + person.getEmail();
+        return "Przyszla klasa: " + personForm.getName() + " " + personForm.getLastname() + " " + personForm.getEmail();
     }
 
 //    ---------------------------------------------------------------------------------------------------------
@@ -106,7 +106,7 @@ public class MainController {
 //    Testujemy jak dziala wzorzec builder
 //    nie ma wplywu na dzialanie springa
 //    private void testBuilder() {
-//        Person person = new Person.Builder("Oskar")
+//        PersonForm person = new PersonForm.Builder("Oskar")
 //                .lastname("Polak")
 //                .age(27)
 //                .number("787-234-123")
