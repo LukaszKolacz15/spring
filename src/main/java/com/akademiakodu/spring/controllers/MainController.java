@@ -25,6 +25,9 @@ import java.time.ZonedDateTime;
 public class MainController {
 
 
+
+
+
     @Autowired
     PersonRepository personRepository;
 
@@ -34,27 +37,27 @@ public class MainController {
 
 
     //    Odwołanie do naszego SimpleBeana (wstrzyknięcie):
-    @Autowired
-    SimpleBean simpleBean;
+//    @Autowired
+//    SimpleBean simpleBean;
 //      -----------------------------------------
 
-    @RequestMapping(value = "/", method = RequestMethod.GET)
-    public String main(Model model) {
+//    @RequestMapping(value = "/", method = RequestMethod.GET)
+//    public String main(Model model) {
+//
+//        ZonedDateTime now = LocalDateTime.now().atZone(ZoneId.of("Europe/Paris"));
+//
+//        System.out.println("Time now: " + now.toString());
+//
+//        if (now.getHour() >= 16) {
+//            model.addAttribute("someString", "a");
+//        } else {
+//            model.addAttribute("someString", "b");
+//        }
 
-        ZonedDateTime now = LocalDateTime.now().atZone(ZoneId.of("Europe/Paris"));
 
-        System.out.println("Time now: " + now.toString());
-
-        if (now.getHour() >= 16) {
-            model.addAttribute("someString", "a");
-        } else {
-            model.addAttribute("someString", "b");
-        }
-
-
-//        model.addAttribute("someString", "Pochodzę z controllera!");
-        return "index";
-    }
+////        model.addAttribute("someString", "Pochodzę z controllera!");
+//        return "index";
+//    }
 
     //      Pobieranie danych z formularza:
 //          (for firstIndex.html)
@@ -66,14 +69,16 @@ public class MainController {
 //        return name + " " + lastname + " jest " + ((age>18) ? "pelnoletni" : "niepelnoletni");
 //    }
 //    --------------------------------------------------------------
-    @RequestMapping(value = "/data", method = RequestMethod.POST)
-    @ResponseBody
-    public String data(@RequestParam(value = "email") String email,
-                       @RequestParam(value = "password") String password) {
 
 
-        return "Logowanie testowe: " + "Email: " + email + " Password: " + password;
-    }
+//    @RequestMapping(value = "/data", method = RequestMethod.POST)
+//    @ResponseBody
+//    public String data(@RequestParam(value = "email") String email,
+//                       @RequestParam(value = "password") String password) {
+//
+//
+//        return "Logowanie testowe: " + "Email: " + email + " Password: " + password;
+//    }
 
 //    INNE PODEJSCIE DO (dużych) FORMULARZY:
 
@@ -93,11 +98,11 @@ public class MainController {
 //    ---------------------------------------------------------------------------------------------------------
 
 
-    @RequestMapping(value = "/contact", method = RequestMethod.GET)
-    public String contact(Model model) {
-        model.addAttribute("contactObject", new ContactPerson());
-        return "contact";
-    }
+//    @RequestMapping(value = "/contact", method = RequestMethod.GET)
+//    public String contact(Model model) {
+//        model.addAttribute("contactObject", new ContactPerson());
+//        return "contact";
+//    }
 
 //    @RequestMapping(value = "/contact", method = RequestMethod.POST)
 //    @ResponseBody
@@ -129,12 +134,6 @@ public class MainController {
 
 // ----------------------------------------------------------------------------------------------------------------------------------------
 //    DO ENCJI:
-
-
-//        Person personObject = new Person(contactPerson);
-//        personRepository.save(personObject);
-
-
 
     @RequestMapping(value = "/newform", method = RequestMethod.GET)
     public String newform(Model model) {
