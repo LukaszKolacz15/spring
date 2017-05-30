@@ -9,19 +9,19 @@ import javax.validation.constraints.Size;
  * Created by Lukasz Kolacz on 29.05.2017.
  */
 public class ContactPerson {
-    @NotEmpty
-    @Size(min = 5, max = 25)
+    @NotEmpty(message = "{NotEmpty.ContactPerson.conName}")
+    @Size(min = 5, max = 25, message = "{Size.ContactPerson.conLastname}")
     private String conName;
 
-    @NotEmpty
-    @Size(min = 5, max = 25)
+    @NotEmpty(message = "{NotEmpty.ContactPerson.conLastname}")
+    @Size(min = 5, max = 25, message = "{Size.ContactPerson.conLastname}")
     private String conLastname;
 
-    @NotEmpty
-    @Email
+    @NotEmpty(message = "{NotEmpty.ContactPerson.conEmail}")
+    @Email(message = "{Email.ContactPerson.conEmail}")
     private String conEmail;
 
-    @NotEmpty
+    @NotEmpty(message = "{NotEmpty.ContactPerson.conTextarea}")
     private String conTextarea;
 
 

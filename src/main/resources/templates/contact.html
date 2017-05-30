@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://thymeleaf.org">
+<html lang="pl" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Contact</title>
 </head>
 <body>
 <center>
+    <h1><p th:text="#{welcome}"></pth:text></p></h1>
     <form action="#" th:action="@{contact}" th:object="${contactObject}" method="post">
         <p>Imię: <input type="text" th:field="*{conName}"></p>
             <span th:if="${#fields.hasErrors('conName')}" th:errors="*{conName}">Name error ex.</span>
