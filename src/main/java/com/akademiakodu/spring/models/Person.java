@@ -1,15 +1,38 @@
 package com.akademiakodu.spring.models;
 
+import com.akademiakodu.spring.models.forms.PersonForm;
+import com.sun.javafx.beans.IDProperty;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
 /**
  * Created by Lukasz Kolacz on 30.05.2017.
  */
-public class Person {
 
+@Entity
+public class Person {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int id;
     private String name;
     private String lastname;
     private int age;
     private String number;
     private String email;
+
+    public Person(ContactPerson contactPerson) {
+    }
+
+    public Person(PersonForm personForm) {
+        name = personForm.getName();
+        lastname = personForm.getLastname();
+        age = personForm.getAge();
+        number = personForm.getNumber();
+        email = personForm.getEmail();
+    }
 
     public Person(String name, String lastname, int age, String number, String email) {
         this.name = name;
@@ -17,6 +40,14 @@ public class Person {
         this.age = age;
         this.number = number;
         this.email = email;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

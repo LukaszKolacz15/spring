@@ -1,6 +1,8 @@
 package com.akademiakodu.spring.controllers;
 
+import com.akademiakodu.spring.PersonRepository;
 import com.akademiakodu.spring.models.ContactPerson;
+import com.akademiakodu.spring.models.Person;
 import com.akademiakodu.spring.models.forms.PersonForm;
 import com.akademiakodu.spring.models.SimpleBean;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,15 @@ import java.time.ZonedDateTime;
 
 @Controller
 public class MainController {
+
+
+    @Autowired
+    PersonRepository personRepository;
+
+
+
+
+
 
     //    Odwołanie do naszego SimpleBeana (wstrzyknięcie):
     @Autowired
@@ -66,18 +77,18 @@ public class MainController {
 
 //    INNE PODEJSCIE DO (dużych) FORMULARZY:
 
-    @RequestMapping(value = "/newform", method = RequestMethod.GET)
-    public String newform(Model model) {
-        model.addAttribute("personObject", new PersonForm());
-        return "form";
-    }
-
-    @RequestMapping(value = "/newform", method = RequestMethod.POST)
-    @ResponseBody
-    public String newFormPost(PersonForm personForm) {
-
-        return "Przyszla klasa: " + personForm.getName() + " " + personForm.getLastname() + " " + personForm.getEmail();
-    }
+//    @RequestMapping(value = "/newform", method = RequestMethod.GET)
+//    public String newform(Model model) {
+//        model.addAttribute("personObject", new PersonForm());
+//        return "form";
+//    }
+//
+//    @RequestMapping(value = "/newform", method = RequestMethod.POST)
+//    @ResponseBody
+//    public String newFormPost(PersonForm personForm) {
+//
+//        return "Przyszla klasa: " + personForm.getName() + " " + personForm.getLastname() + " " + personForm.getEmail();
+//    }
 
 //    ---------------------------------------------------------------------------------------------------------
 
@@ -95,13 +106,13 @@ public class MainController {
 //
 //    }
 
-    @RequestMapping(value = "/contact", method = RequestMethod.POST)
-    public String newContactPost(@ModelAttribute("contactObject") @Valid ContactPerson contactPerson, BindingResult result){
-        if(result.hasErrors()){
-            return "contact";
-        }
-        return "result";
-    }
+//    @RequestMapping(value = "/contact", method = RequestMethod.POST)
+//    public String newContactPost(@ModelAttribute("contactObject") @Valid ContactPerson contactPerson, BindingResult result){
+//        if(result.hasErrors()){
+//            return "contact";
+//        }
+//        return "result";
+//    }
 
 //    Testujemy jak dziala wzorzec builder
 //    nie ma wplywu na dzialanie springa
@@ -114,4 +125,36 @@ public class MainController {
 //                .build();
 //        person.getAge();
 //    }
+
+
+// ----------------------------------------------------------------------------------------------------------------------------------------
+//    DO ENCJI:
+
+
+//        Person personObject = new Person(contactPerson);
+//        personRepository.save(personObject);
+
+
+
+    @RequestMapping(value = "/newform", method = RequestMethod.GET)
+    public String newform(Model model) {
+        model.addAttribute("personObject", new PersonForm());
+        return "form";
+    }
+
+    @RequestMapping(value = "/newform", method = RequestMethod.POST)
+    public String newformPost(@ModelAttribute("personObject") @Valid PersonForm personForm, BindingResult result){
+        if(result.hasErrors()){
+            return "form";
+        }
+
+        Person personObject = new Person(personForm);
+        personRepository.save(personObject);
+
+        return "result";
+    }
+
+
+
+
 }
